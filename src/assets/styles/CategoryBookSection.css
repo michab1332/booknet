@@ -1,0 +1,22 @@
+.categoryBookSection {
+    width: 100%;
+    min-height: 30vh;
+    background-color: #000000;
+}
+
+.categoryBookSection__title {
+    color: #fff;
+    margin-top: 0;
+    padding-top: 1.5rem;
+    margin-left: 1rem;
+    font-size: 1.3rem;
+}
+
+.categoryBookContainer__booksContainer {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.categoryBookContainer__booksContainer::-webkit-scrollbar {
+    display: none;
+}
