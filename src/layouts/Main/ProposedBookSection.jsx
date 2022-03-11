@@ -6,17 +6,24 @@ import Button from '../../components/Button';
 
 import '../../assets/styles/ProposedBookSection.css';
 
-export default function ProposedBookSection() {
+export default function ProposedBookSection({ bookData }) {
+    const { name, imgUrl, description } = bookData
+    const addToMyBooks = () => {
+        console.log("added " + name)
+    }
+    const getInformations = () => {
+        console.log(description)
+    }
     return (
         <div className="proposedBookContainer" style={{
-            backgroundImage: 'url("https://image.ceneostatic.pl/data/products/32692858/i-wiedzmin-1-ostatnie-zyczenie.jpg")',
+            backgroundImage: `url(${imgUrl})`,
         }}>
             <Header />
             <div className="proposedBookContainer__nav">
                 <div className="proposedBookContainer__nav__navWrapper">
-                    <SvgButton src={require('../../assets/svgs/Plus.svg').default} alt="plus icon" text="My books" />
+                    <SvgButton onClick={addToMyBooks} src={require('../../assets/svgs/Plus.svg').default} alt="plus icon" text="My books" />
                     <Button text="Czytaj" />
-                    <SvgButton src={require('../../assets/svgs/inf.svg').default} alt="inf icon" text="Informations" />
+                    <SvgButton onClick={getInformations} src={require('../../assets/svgs/inf.svg').default} alt="inf icon" text="Informations" />
                 </div>
             </div>
         </div>
