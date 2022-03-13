@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 import '../../assets/styles/BlurImage.css'
 
-export default function BlurImage({ imgUrl }) {
+export default function BlurImage({ imgUrl, scrollY }) {
     return (
         <div className="blurImageContainer">
             <img src={imgUrl} alt="blur" className="blurImageContainer__blurImg" />
@@ -15,7 +15,7 @@ export default function BlurImage({ imgUrl }) {
                     translateX: '-50%'
                 }}
                 animate={{
-                    scale: 1,
+                    scale: scrollY === 0 ? 1 : (1 - scrollY / 1000),
                 }}
                 src={imgUrl}
                 alt="notBlur"

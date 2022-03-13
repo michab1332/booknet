@@ -2,7 +2,7 @@ import Button from "../../components/Button"
 
 import "../../assets/styles/Content.css"
 
-export default function Content({ description }) {
+export default function Content({ author, title, description }) {
     return (
         <div className='contentContainer'>
             <div className="contentContainer__buttonWrapper">
@@ -13,6 +13,10 @@ export default function Content({ description }) {
                 </div>
             </div>
             <div className="contentContainer__description">
+                <div className="contentContainer__description__booksInf">
+                    <p className="contentContainer__description__booksInf__author">{author}</p>
+                    <p className="contentContainer__description__booksInf__title">{title}</p>
+                </div>
                 <p className="contentContainer__description__title">Opis</p>
                 <p className="contentContainer__description__text">
                     {description}

@@ -16,7 +16,7 @@ export default function Button({ text, large, outline }) {
                 fontWeight: 900
             }}
             whileTap={{
-                scale: .9
+                scale: .95
             }}
         >{text}</motion.button>
     )

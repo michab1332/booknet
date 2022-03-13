@@ -1,5 +1,6 @@
 .contentContainer {
     min-height: 50vh;
+    max-height: 90%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -20,6 +21,7 @@
 
 .contentContainer__description {
     width: 80%;
+    margin-bottom: 5rem;
 }
 
 .contentContainer__description__title {
@@ -31,4 +33,22 @@
 .contentContainer__description__text {
     color: #fff;
     font-size: 19px;
+}
+
+.contentContainer__description__booksInf {
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    font-weight: bold;
+}
+
+.contentContainer__description__booksInf__author {
+    color: #00A7E1;
+}
+
+.contentContainer__description__booksInf__title {
+    color: #A31621;
 }
