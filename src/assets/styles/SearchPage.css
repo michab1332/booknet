@@ -1,0 +1,15 @@
+.containerSB {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerSB__searchBar {
+    width: 80%;
+    padding: .5rem .2rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+

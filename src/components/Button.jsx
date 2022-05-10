@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-export default function Button({ text, large, outline }) {
+export default function Button({ text, large, outline, onClick }) {
     return (
         <motion.button
+            onClick={() => onClick()}
             style={{
                 width: large ? "100%" : 100,
                 height: 40,

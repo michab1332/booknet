@@ -33,7 +33,7 @@ export default function BookPage() {
             backgroundColor: '#000',
         }}>
             <BlurImage imgUrl={book.imgUrl} scrollY={scrollY} />
-            <Content title={book.name} author={book.author} description={book.description} />
+            <Content pdfUrl={book.pdfUrl} title={book.name} author={book.author} description={book.description} />
         </div>
     )
 }

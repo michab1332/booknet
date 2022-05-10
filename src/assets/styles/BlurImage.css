@@ -12,6 +12,7 @@
 
 .blurImageContainer__img {
     position: absolute;
+    border-radius: 5px;
     width: 220px;
     top: 50%;
     left: 50%;
