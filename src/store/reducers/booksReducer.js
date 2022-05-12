@@ -15,7 +15,7 @@ const initialState = [
         name: 'Wiedzmin Sezon Burz',
         author: "Andrzej Sapkowski",
         imgUrl: 'https://s.lubimyczytac.pl/upload/books/199000/199630/490986-352x500.jpg',
-        pdfUrl: 'wiedzminPDF.pdf',
+        pdfUrl: 'http://www.africau.edu/images/default/sample.pdf',
         launguageVersion: 'polska',
         categories: ['fantasy', 'tego typu'],
         description: "Geralt stacza walkę z niebezpiecznym potworem, którego jedynym celem w życiu jest zabijanie ludzi. Krótko po tym zostaje aresztowany, co skutkuje utratą jego dwóch bezcennych mieczy wiedźmińskich. Z małą pomocą swojego przyjaciela, Jaskra i jego koneksji, robi wszystko, by odzyskać swoje narzędzia pracy.",

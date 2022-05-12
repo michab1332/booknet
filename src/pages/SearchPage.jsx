@@ -7,7 +7,7 @@ export default function SearchPage() {
     return (
         <div style={{
             backgroundColor: "#000",
-            width: "100%"
+            
         }}>
             <SearchBar inputValue={value} setInputValue={setValue} />
         </div>

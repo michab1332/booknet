@@ -17,11 +17,34 @@ export default function ReadingPage() {
         setNumPages(numPages)
     }
 
+    const nextPageNumber = () => {
+        if (pageNumber + 1 > numPages) return 0
+        return 1
+    }
+
+    const previousPageNumber = () => {
+        if (pageNumber - 1 === 0) return 0
+        return 1
+    }
+
+    const handleChangePage = (option) => {
+        const switchObject = {
+            'next': () => setPageNumber(prevState => prevState + nextPageNumber()),
+            'previous': () => setPageNumber(prevState => prevState - previousPageNumber()),
+        }
+        switchObject[option]()
+    }
+
     return (
         <div className='documentContainer'>
             <Document className="documentContainer__document" file={DIRECTORY + state.pdfUrl} onLoadSuccess={onDocumentLoadSuccess} onLoadError={(err) => console.log(err)}>
                 <Page className="documentContainer__page" pageNumber={pageNumber} />
             </Document>
+            <nav className="documentContainer__navigation">
+                <button onClick={() => handleChangePage('previous')} className="documentContainer__navigation__button">&lt;</button>
+                <p className="documentContainer__navigation__pages">{pageNumber} / {numPages}</p>
+                <button onClick={() => handleChangePage('next')} className="documentContainer__navigation__button">&gt;</button>
+            </nav>
         </div>
     )
 }
