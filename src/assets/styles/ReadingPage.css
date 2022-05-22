@@ -15,16 +15,15 @@
 }
 
 .documentContainer__navigation {
-    width: 15rem;
-    position: absolute;
+    width: 100%;
+    position: fixed;
     bottom: 2%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 2rem;
-    background-color: rgb(233, 233, 233);
     border-radius: .5rem;
 }
 
@@ -34,10 +33,45 @@
     border-radius: .5rem;
     outline: none;
     border: none;
-    background-color: rgb(255, 255, 255);
+    background-color: #4357AD;
+    color: #fff;
     margin: 5px 0;
-
+    position: relative;
 }
+
+.documentContainer__navigation__button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: .5rem;
+    top: 10%;
+    left: 10%;
+    z-index: -1;
+}
+
+.documentContainer__navigation__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.documentContainer__navigation__input {
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    width: 4rem;
+}
+
+.documentContainer__navigation__text {
+    margin: 0;
+    opacity: .5;
+}
+
+.documentContainer__navigation__text {}
 
 @media only screen and (max-width: 600px) {
     .documentContainer__document {
@@ -47,9 +81,14 @@
     .react-pdf__Page__canvas {
         margin: 0;
         width: 100% !important;
+        height: 100vh !important;
     }
 
     .react-pdf__Page__textContent {
         width: 100% !important;
+    }
+
+    span {
+        display: none;
     }
 }

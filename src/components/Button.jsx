@@ -7,7 +7,7 @@ export default function Button({ text, large, outline, onClick }) {
             onClick={() => onClick()}
             style={{
                 width: large ? "100%" : 100,
-                height: 40,
+                minHeight: 40,
                 borderRadius: 5,
                 outline: "none",
                 border: outline ? "2px solid #fff" : "none",
@@ -19,6 +19,6 @@ export default function Button({ text, large, outline, onClick }) {
             whileTap={{
                 scale: .95
             }}
-        >{text}</motion.button>
+        > {text}</motion.button >
     )
 }
