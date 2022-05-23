@@ -20,7 +20,7 @@ const initialState = [
         description: "Geralt stacza walkę z niebezpiecznym potworem, którego jedynym celem w życiu jest zabijanie ludzi. Krótko po tym zostaje aresztowany, co skutkuje utratą jego dwóch bezcennych mieczy wiedźmińskich. Z małą pomocą swojego przyjaciela, Jaskra i jego koneksji, robi wszystko, by odzyskać swoje narzędzia pracy.",
         views: 0,
         rate: 8,
-        pdfUrl: "https://manning-content.s3.amazonaws.com/download/5/54dea42-e46e-44c7-a930-d4c86a2c2ca3/CORS_ch03.pdf"
+        pdfUrl: "http://localhost:3000/pdf/Sezon_Burz.pdf"
     },
     {
         id: 2,

@@ -2,7 +2,7 @@ import React from 'react'
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
 
-export default function Login() {
+export default function Signup() {
     return (
         <div style={{
             backgroundColor: "#000",
@@ -37,8 +37,15 @@ export default function Login() {
                     <input type="password" id="password" />
                 </div>
 
-                <button>Log In</button>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}>
+                    <label htmlFor="passwordConfirmation">Password confirmation</label>
+                    <input type="password" id="passwordConfirmation" />
+                </div>
                 <button>Sign Up</button>
+                <button>Log In</button>
             </form>
         </div>
     )

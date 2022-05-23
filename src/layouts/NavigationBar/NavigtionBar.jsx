@@ -8,7 +8,7 @@ import yourBooksIcon from '../../assets/svgs/yourBooksIcon.svg'
 
 import '../../assets/styles/NavigationBar.css'
 
-const HIDDEN_PAGES = ["/reading", "/"]
+const HIDDEN_PAGES = ["/reading", "/signup", "/login"]
 
 export default function NavigtionBar() {
     const { pathname } = useLocation();
