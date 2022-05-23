@@ -8,6 +8,8 @@ import yourBooksIcon from '../../assets/svgs/yourBooksIcon.svg'
 
 import '../../assets/styles/NavigationBar.css'
 
+const HIDDEN_PAGES = ["/reading", "/"]
+
 export default function NavigtionBar() {
     const { pathname } = useLocation();
     let navigate = useNavigate();
@@ -15,8 +17,8 @@ export default function NavigtionBar() {
         navigate(path)
     }
     return (
-        pathname === "/reading" ? null : <div className='navigationBarContainer'>
-            <SvgButton onClick={() => changePage('/')} src={homeIcon} alt="home icon" text="Home page" />
+        HIDDEN_PAGES.includes(pathname) ? null : <div className='navigationBarContainer'>
+            <SvgButton onClick={() => changePage('/home')} src={homeIcon} alt="home icon" text="Home page" />
             <SvgButton onClick={() => changePage('search')} src={searchIcon} alt="home icon" text="Search books" />
             <SvgButton onClick={() => changePage('/')} src={yourBooksIcon} alt="home icon" text="Your books" />
         </div>
