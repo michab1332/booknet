@@ -9,38 +9,32 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.REGISTER_START:
+        case ActionTypes.LOGIN_START:
+        case ActionTypes.LOGOUT_START:
             return {
                 ...state,
                 loading: true,
             };
         case ActionTypes.REGISTER_SUCCESS:
+        case ActionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 currentUser: action.payload
             };
         case ActionTypes.REGISTER_FAIL:
+        case ActionTypes.LOGIN_FAIL:
+        case ActionTypes.LOGOUT_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             };
-        case ActionTypes.LOGIN_START:
+        case ActionTypes.LOGOUT_SUCCESS:
             return {
                 ...state,
-                loading: true,
-            }
-        case ActionTypes.LOGIN_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                currentUser: action.payload
-            }
-        case ActionTypes.LOGIN_FAIL:
-            return {
-                ...state,
-                error: action.payload
-            }
+                currentUser: null
+            };
         default:
             return state;
     }

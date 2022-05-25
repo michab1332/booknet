@@ -1,14 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../store'
+import { useSelector } from 'react-redux'
 
 import ProposedBookSection from '../layouts/Main/ProposedBookSection'
 import CategoryBookSection from '../layouts/Main/CategoryBookSection'
 
 export default function HomePage() {
     const books = useSelector(state => state.books)
-    const dispatch = useDispatch()
-    const { deleteBook } = bindActionCreators(actionCreators, dispatch)
 
     return (
         <>

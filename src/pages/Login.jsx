@@ -30,15 +30,12 @@ export default function Signup() {
         //reset state
         setEmail("")
         setPassword("")
-
-        console.log(currentUser)
     }
 
     useEffect(() => {
         if (currentUser) {
             navigate("/")
         }
-        console.log(currentUser)
     }, [currentUser])
 
     return (

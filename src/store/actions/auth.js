@@ -73,3 +73,37 @@ export const loginInit = (email, password) => {
             })
     }
 }
+
+//logout
+const logoutStart = () => {
+    return {
+        type: ActionTypes.LOGOUT_START
+    }
+}
+
+const logoutSuccess = () => {
+    return {
+        type: ActionTypes.LOGOUT_SUCCESS
+    }
+}
+
+const logoutFail = (error) => {
+    return {
+        type: ActionTypes.LOGOUT_FAIL,
+        payload: error
+    }
+}
+
+export const logoutInit = () => {
+    return (dispatch) => {
+        dispatch(logoutStart())
+        auth
+            .signOut()
+            .then((response) => {
+                dispatch(logoutSuccess())
+            })
+            .catch(err => {
+                if (err) dispatch(logoutFail(err))
+            })
+    }
+}

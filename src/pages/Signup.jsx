@@ -32,14 +32,12 @@ export default function Signup() {
         setPassword("")
         setPasswordConfirmation("")
 
-        console.log(currentUser)
     }
 
     useEffect(() => {
         if (currentUser) {
             navigate("/")
         }
-        console.log(currentUser)
     }, [currentUser])
 
     return (

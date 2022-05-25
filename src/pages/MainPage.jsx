@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import PrivateRoute from '../components/PrivateRoute'
 import HomePage from './HomePage'
 import SearchPage from './SearchPage'
 import BookPage from './BookPage'
@@ -13,14 +14,14 @@ export default function MainPage() {
     return (
         <BrowserRouter >
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/search" element={<SearchPage />} />
-                <Route path="/book" element={<BookPage />} >
+                <Route path="/search" element={<PrivateRoute><SearchPage /></PrivateRoute>} />
+                <Route path="/book" element={<PrivateRoute><BookPage /></PrivateRoute>} >
                     <Route path=":bookId" element={<BookPage />} />
                 </Route>
-                <Route path="reading" element={<ReadingPage />} />
+                <Route path="reading" element={<PrivateRoute><ReadingPage /></PrivateRoute>} />
             </Routes>
             <NavigtionBar />
         </BrowserRouter>
