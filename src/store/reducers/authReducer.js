@@ -25,6 +25,22 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case ActionTypes.LOGIN_START:
+            return {
+                ...state,
+                loading: true,
+            }
+        case ActionTypes.LOGIN_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                currentUser: action.payload
+            }
+        case ActionTypes.LOGIN_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
         default:
             return state;
     }

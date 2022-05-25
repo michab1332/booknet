@@ -59,3 +59,17 @@ const loginFail = (error) => {
         payload: error
     }
 }
+
+export const loginInit = (email, password) => {
+    return function (dispatch) {
+        dispatch(loginStart())
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .then(({ user }) => {
+                dispatch(loginSuccess(user))
+            })
+            .catch(err => {
+                if (err) dispatch(loginFail(err.message))
+            })
+    }
+}

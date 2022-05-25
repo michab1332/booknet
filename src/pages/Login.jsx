@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { registerInit } from '../store/actions/auth'
+import { loginInit } from '../store/actions/auth'
 import { useNavigate } from 'react-router-dom'
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
@@ -13,24 +13,23 @@ export default function Signup() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const handleSetInputValue = (event, setValue) => {
         setValue(event.target.value)
     }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if (password !== passwordConfirmation) {
-            console.log("password dont match")
+        if (password === "") {
+            console.log("password is empty")
             return;
         }
 
-        dispatch(registerInit(email, password, "display name"))
+        dispatch(loginInit(email, password))
 
         //reset state
         setEmail("")
         setPassword("")
-        setPasswordConfirmation("")
 
         console.log(currentUser)
     }

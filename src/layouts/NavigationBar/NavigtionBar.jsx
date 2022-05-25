@@ -18,7 +18,7 @@ export default function NavigtionBar() {
     }
     return (
         HIDDEN_PAGES.includes(pathname) ? null : <div className='navigationBarContainer'>
-            <SvgButton onClick={() => changePage('/home')} src={homeIcon} alt="home icon" text="Home page" />
+            <SvgButton onClick={() => changePage('/')} src={homeIcon} alt="home icon" text="Home page" />
             <SvgButton onClick={() => changePage('search')} src={searchIcon} alt="home icon" text="Search books" />
             <SvgButton onClick={() => changePage('/')} src={yourBooksIcon} alt="home icon" text="Your books" />
         </div>
