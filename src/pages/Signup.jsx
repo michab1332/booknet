@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../store'
+import { registerInit } from '../store/actions/auth'
+import { useNavigate } from 'react-router-dom'
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
 
 export default function Signup() {
-    const userAuth = useSelector(state => state.userAuth)
+    const { currentUser } = useSelector(state => state.userAuth)
     const dispatch = useDispatch()
-    const { logIn } = bindActionCreators(actionCreators, dispatch)
-    logIn()
-    console.log(userAuth)
+
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -18,6 +17,30 @@ export default function Signup() {
     const handleSetInputValue = (event, setValue) => {
         setValue(event.target.value)
     }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (password !== passwordConfirmation) {
+            console.log("password dont match")
+            return;
+        }
+
+        dispatch(registerInit(email, password, "display name"))
+
+        //reset state
+        setEmail("")
+        setPassword("")
+        setPasswordConfirmation("")
+
+        console.log(currentUser)
+    }
+
+    useEffect(() => {
+        if (currentUser) {
+            navigate("/")
+        }
+        console.log(currentUser)
+    }, [currentUser])
 
     return (
         <div style={{
@@ -42,7 +65,7 @@ export default function Signup() {
                     flexDirection: 'column'
                 }}>
                     <label htmlFor="email">E-mail</label>
-                    <input type="text" id="email" onChange={e => handleSetInputValue(e, setEmail)} />
+                    <input type="text" id="email" onChange={e => handleSetInputValue(e, setEmail)} value={email} />
                 </div>
 
                 <div style={{
@@ -50,7 +73,7 @@ export default function Signup() {
                     flexDirection: 'column'
                 }}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" onChange={e => handleSetInputValue(e, setPassword)} />
+                    <input type="password" id="password" onChange={e => handleSetInputValue(e, setPassword)} value={password} />
                 </div>
 
                 <div style={{
@@ -58,9 +81,9 @@ export default function Signup() {
                     flexDirection: 'column'
                 }}>
                     <label htmlFor="passwordConfirmation">Password confirmation</label>
-                    <input type="password" id="passwordConfirmation" onChange={e => handleSetInputValue(e, setPasswordConfirmation)} />
+                    <input type="password" id="passwordConfirmation" onChange={e => handleSetInputValue(e, setPasswordConfirmation)} value={passwordConfirmation} />
                 </div>
-                <button>Sign Up</button>
+                <button onClick={e => handleSubmit(e)}>Sign Up</button>
                 <button>Log In</button>
             </form>
         </div>
