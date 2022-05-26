@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loginInit } from '../store/actions/auth'
 import { useNavigate } from 'react-router-dom'
+import '../assets/styles/AuthSections.css'
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
 
