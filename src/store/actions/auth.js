@@ -28,9 +28,9 @@ export const registerInit = (email, password, displayName) => {
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                user.updateProfile({
-                    displayName,
-                })
+                // user.updateProfile({
+                //     displayName,
+                // })
                 dispatch(registerSuccess(user))
             })
             .catch(err => {
