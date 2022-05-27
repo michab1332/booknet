@@ -9,7 +9,7 @@ export default function HomePage() {
     return (
         <>
             <ProposedBookSection bookData={books[0]} />
-            <CategoryBookSection text="Popularne w serwisie Booknet" data={books} />
+            <CategoryBookSection text="Popularne w serwisie Readme" data={books} />
             <CategoryBookSection text="Najnowsze tytuły" data={books} />
             <CategoryBookSection text="Najlepiej oceniane" data={books} />
         </>
