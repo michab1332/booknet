@@ -5,8 +5,8 @@ import CategoryBookSection from '../layouts/Main/CategoryBookSection'
 
 export default function HomePage() {
     const books = useSelector(state => state.books)
-    const { currentUser } = useSelector(state => state.userAuth)
-    console.log(currentUser)
+    // const { currentUser } = useSelector(state => state.userAuth)
+
     return (
         <>
             <ProposedBookSection bookData={books[0]} />
