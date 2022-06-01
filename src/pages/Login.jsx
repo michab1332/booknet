@@ -16,6 +16,7 @@ export default function Signup() {
     const [state, setState] = useState({
         email: "",
         password: "",
+        error: null
     })
 
     const { email, password } = state
@@ -27,17 +28,21 @@ export default function Signup() {
         })
     }
 
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState("")
-    // const handleSetInputValue = (event, setValue) => {
-    //     setValue(event.target.value)
-    // }
-
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if (password === "") {
-            console.log("password is empty")
+            setState({
+                ...state,
+                error: "Password is empty"
+            })
+            return;
+        }
+        if (password.length <= 6) {
+            setState({
+                ...state,
+                error: "Password is too short"
+            })
             return;
         }
 

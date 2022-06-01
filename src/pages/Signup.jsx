@@ -16,7 +16,8 @@ export default function Signup() {
     const [state, setState] = useState({
         email: "",
         password: "",
-        passwordConfirmation: ""
+        passwordConfirmation: "",
+        error: null
     })
 
     const { email, password, passwordConfirmation } = state
@@ -32,7 +33,17 @@ export default function Signup() {
         e.preventDefault()
 
         if (password !== passwordConfirmation) {
-            console.log("password dont match")
+            setState({
+                ...state,
+                error: "Passwords do not match"
+            })
+            return;
+        }
+        if (password.length <= 6) {
+            setState({
+                ...state,
+                error: "Password is too short"
+            })
             return;
         }
 
