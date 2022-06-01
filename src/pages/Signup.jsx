@@ -13,12 +13,21 @@ export default function Signup() {
 
     const navigate = useNavigate()
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
-    const handleSetInputValue = (event, setValue) => {
-        setValue(event.target.value)
+    const [state, setState] = useState({
+        email: "",
+        password: "",
+        passwordConfirmation: ""
+    })
+
+    const { email, password, passwordConfirmation } = state
+
+    const handleInputChange = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
     }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -30,9 +39,11 @@ export default function Signup() {
         dispatch(registerInit(email, password, "display name"))
 
         //reset state
-        setEmail("")
-        setPassword("")
-        setPasswordConfirmation("")
+        setState({
+            email: "",
+            password: "",
+            passwordConfirmation: ""
+        })
 
     }
 
@@ -48,17 +59,17 @@ export default function Signup() {
             <form className='auth__form'>
                 <div>
                     <label htmlFor="email">E-mail</label> <br></br>
-                    <input className='auth__form__input' type="text" id="email" onChange={e => handleSetInputValue(e, setEmail)} value={email} />
+                    <input className='auth__form__input' type="text" name="email" onChange={handleInputChange} value={email} />
                 </div>
 
                 <div>
                     <label htmlFor="password">Password</label><br></br>
-                    <input className='auth__form__input' type="password" id="password" onChange={e => handleSetInputValue(e, setPassword)} value={password} />
+                    <input className='auth__form__input' type="password" name="password" onChange={handleInputChange} value={password} />
                 </div>
 
                 <div>
                     <label htmlFor="passwordConfirmation">Password confirmation</label><br></br>
-                    <input className='auth__form__input' type="password" id="passwordConfirmation" onChange={e => handleSetInputValue(e, setPasswordConfirmation)} value={passwordConfirmation} />
+                    <input className='auth__form__input' type="password" name="passwordConfirmation" onChange={handleInputChange} value={passwordConfirmation} />
                 </div>
                 <div className="auth__form__buttonWrapper">
                     <button className='auth__form__button' onClick={e => handleSubmit(e)}>Sign Up</button>
