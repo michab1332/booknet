@@ -29,21 +29,30 @@ export default function Signup() {
         })
     }
 
+    const setError = (errorName) => {
+        setState({
+            ...state,
+            error: errorName
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if (password !== passwordConfirmation) {
-            setState({
-                ...state,
-                error: "Passwords do not match"
-            })
+            setError("Passwords do not match")
             return;
         }
         if (password.length <= 6) {
-            setState({
-                ...state,
-                error: "Password is too short"
-            })
+            setError("Password is too short")
+            return;
+        }
+        if (email === "") {
+            setError("Email is empty")
+            return;
+        }
+        if (email === "" && password === "") {
+            setError("Email and password is empty")
             return;
         }
 

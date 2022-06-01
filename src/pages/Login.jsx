@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import "../assets/styles/AuthSections.css"
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
+import ErrorHandler from '../components/ErrorHandler'
 
 export default function Signup() {
     const { currentUser } = useSelector(state => state.userAuth)
@@ -19,7 +20,7 @@ export default function Signup() {
         error: null
     })
 
-    const { email, password } = state
+    const { email, password, error } = state
 
     const handleInputChange = (e) => {
         setState({
@@ -28,21 +29,30 @@ export default function Signup() {
         })
     }
 
+    const setError = (errorName) => {
+        setState({
+            ...state,
+            error: errorName
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if (email === "" && password === "") {
+            setError("Email and password is empty")
+            return;
+        }
         if (password === "") {
-            setState({
-                ...state,
-                error: "Password is empty"
-            })
+            setError("Password is empty")
             return;
         }
         if (password.length <= 6) {
-            setState({
-                ...state,
-                error: "Password is too short"
-            })
+            setError("Password is too short. Minimum length is 6 letters")
+            return;
+        }
+        if (email === "") {
+            setError("Email is empty")
             return;
         }
 
@@ -80,6 +90,7 @@ export default function Signup() {
                     <button className='auth__form__button-outline' onClick={() => navigate("/signup")}>Sign Up</button>
                 </div>
             </form >
+            {error && <ErrorHandler error={error} />}
         </div >
     )
 }
