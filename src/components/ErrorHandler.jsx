@@ -6,7 +6,7 @@ export default function ErrorHandler({ error }) {
             backgroundColor: "red",
             color: "#fff",
             height: '3rem',
-            width: "60%",
+            width: "70%",
             maxWidth: "500px",
             borderRadius: "5px",
             display: "flex",
@@ -14,7 +14,6 @@ export default function ErrorHandler({ error }) {
             justifyContent: 'center',
             fontSize: "1.2rem",
             fontWeight: "bold",
-            padding: ".5rem 1rem"
         }}>{error}</div>
     )
 }

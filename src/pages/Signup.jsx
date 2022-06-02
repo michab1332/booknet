@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import "../assets/styles/AuthSections.css"
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
+import ErrorHandler from '../components/ErrorHandler'
 
 export default function Signup() {
     const { currentUser } = useSelector(state => state.userAuth)
@@ -20,7 +21,7 @@ export default function Signup() {
         error: null
     })
 
-    const { email, password, passwordConfirmation } = state
+    const { email, password, passwordConfirmation, error } = state
 
     const handleInputChange = (e) => {
         setState({
@@ -44,7 +45,7 @@ export default function Signup() {
             return;
         }
         if (password.length <= 6) {
-            setError("Password is too short")
+            setError("Password is too short. Min 6 letters")
             return;
         }
         if (email === "") {
@@ -96,6 +97,7 @@ export default function Signup() {
                     <button className='auth__form__button-outline' onClick={() => navigate("/login")}>Log In</button>
                 </div>
             </form>
+            {error && <ErrorHandler error={error} />}
         </div>
     )
 }
