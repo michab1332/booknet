@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../layouts/header/Header'
+import Header from '../../layouts/Header/Header'
 import SvgButton from '../../components/SvgButton';
 import Button from '../../components/Button';
 

@@ -3,30 +3,36 @@ import { useSelector } from 'react-redux'
 
 import '../assets/styles/User.css'
 
+import UserItems from '../layouts/User/UserItems'
+
 export default function User() {
     const { currentUser } = useSelector(state => state.userAuth)
-    console.log(currentUser)
+    const { name, addedBooks, likedBooks, readBooks, readPages } = currentUser
     return (
         <div className="user">
-            <p className="user__name">Michab</p>
+            <p className="user__name">{name}</p>
             <div className="user__stats">
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">0</p>
+                    <p className="user__stats__item__number">{addedBooks}</p>
                     <p className="user__stats__item__text">Dodane książki</p>
                 </div>
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">2</p>
+                    <p className="user__stats__item__number">{likedBooks.length}</p>
                     <p className="user__stats__item__text">Przeczytane książki</p>
                 </div>
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">10</p>
+                    <p className="user__stats__item__number">{readBooks.length}</p>
                     <p className="user__stats__item__text">Polubione książki</p>
                 </div>
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">3212</p>
+                    <p className="user__stats__item__number">{readPages || 0}</p>
                     <p className="user__stats__item__text">Przeczytane strony</p>
                 </div>
             </div>
+
+            <UserItems text="Dodane książki" buttonText="Dodaj książke" />
+            <UserItems text="Przeczytane książki" buttonText="Przeczytaj książke" />
+            <UserItems text="Polubione książki" buttonText="Polub książke" />
         </div>
     )
 }

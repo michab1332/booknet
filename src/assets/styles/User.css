@@ -15,7 +15,7 @@
 }
 
 .user__stats {
-    width: 90%;
+    width: 92%;
     max-width: 500px;
     border-radius: 1rem;
     display: grid;
@@ -35,4 +35,20 @@
 .user__stats__item__number,
 .user__stats__item__text {
     margin: 0;
+}
+
+.user__button {
+    width: 120px;
+    height: 170px;
+    border-radius: 4px;
+    margin: 0 10px;
+    background: linear-gradient(155.83deg, #00A7E1 -6.69%, rgba(0, 167, 225, 0) 130.03%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user__button__text {
+    width: 100%;
+    text-align: center;
 }
