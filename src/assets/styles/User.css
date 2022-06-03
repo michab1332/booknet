@@ -52,3 +52,16 @@
     width: 100%;
     text-align: center;
 }
+
+.user__readPages {
+    width: 92%;
+    padding-bottom: 4rem;
+}
+
+.user__readPages h1 {
+    margin-bottom: 0;
+}
+
+.user__readPages p {
+    margin-top: 0;
+}

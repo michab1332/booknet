@@ -33,6 +33,11 @@ export default function User() {
             <UserItems text="Dodane książki" buttonText="Dodaj książke" />
             <UserItems text="Przeczytane książki" buttonText="Przeczytaj książke" />
             <UserItems text="Polubione książki" buttonText="Polub książke" />
+
+            <div className="user__readPages">
+                <h1>{readPages}</h1>
+                <p>tyle stron już przeczytałeś na naszej stronie, dziękujemy</p>
+            </div>
         </div>
     )
 }
