@@ -115,7 +115,7 @@ const logoutFail = (error) => {
 }
 
 export const logoutInit = () => {
-    return (dispatch) => {
+    return function (dispatch) {
         dispatch(logoutStart())
         auth
             .signOut()

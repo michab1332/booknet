@@ -7,6 +7,7 @@ import "../assets/styles/AuthSections.css"
 
 import LogoBookNet from '../assets/svgs/LogoBookNet'
 import ErrorHandler from '../components/ErrorHandler'
+import { loadFromFile } from 'react-pdf/dist/umd/shared/utils'
 
 export default function Signup() {
     const { currentUser, loading } = useSelector(state => state.userAuth)

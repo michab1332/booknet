@@ -1,16 +1,26 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutInit } from '../store/actions/auth'
 
 import '../assets/styles/User.css'
 
 import UserItems from '../layouts/User/UserItems'
 
 export default function User() {
-    const { currentUser } = useSelector(state => state.userAuth)
-    const { name, addedBooks, likedBooks, readBooks, readPages } = currentUser
+    const { currentUser } = useSelector(state => state.userAuth);
+    const { name, addedBooks, likedBooks, readBooks, readPages } = currentUser;
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logoutInit());
+    }
+
     return (
         <div className="user">
-            <p className="user__name">{name}</p>
+            <div className="user__header">
+                <p className="user__header__name">{name}</p>
+                <p className="user__header__logout" onClick={handleLogout}>Wyloguj się</p>
+            </div>
             <div className="user__stats">
                 <div className="user__stats__item">
                     <p className="user__stats__item__number">{addedBooks}</p>

@@ -8,10 +8,17 @@
     align-items: center;
 }
 
-.user__name {
-    margin: 0;
-    font-size: 2rem;
-    padding: 1rem;
+.user__header {
+    width: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user__header__logout {
+    user-select: none;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .user__stats {

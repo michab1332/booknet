@@ -33,7 +33,8 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.LOGOUT_SUCCESS:
             return {
                 ...state,
-                currentUser: null
+                currentUser: null,
+                loading: false
             };
         default:
             return state;
