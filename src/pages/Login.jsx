@@ -9,7 +9,7 @@ import LogoBookNet from '../assets/svgs/LogoBookNet'
 import ErrorHandler from '../components/ErrorHandler'
 
 export default function Signup() {
-    const { currentUser } = useSelector(state => state.userAuth)
+    const { currentUser, loading } = useSelector(state => state.userAuth)
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ export default function Signup() {
             setError("Password is empty")
             return;
         }
-        if (password.length <= 6) {
+        if (password.length < 6) {
             setError("Password is too short. Minimum length is 6 letters")
             return;
         }
@@ -74,7 +74,9 @@ export default function Signup() {
     return (
         <div className='auth'>
             <LogoBookNet />
-            <form className='auth__form'>
+            <form className='auth__form' style={{
+                display: loading ? "none" : null
+            }}>
                 <div>
                     <label htmlFor="email">E-mail</label><br></br>
                     <input className='auth__form__input' type="text" name="email" onChange={handleInputChange} value={email} />
