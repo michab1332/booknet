@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getItemsInit } from '../store/actions/books'
 
 import ProposedBookSection from '../layouts/Main/ProposedBookSection'
 import CategoryBookSection from '../layouts/Main/CategoryBookSection'
@@ -6,6 +7,9 @@ import CategoryBookSection from '../layouts/Main/CategoryBookSection'
 export default function HomePage() {
     const books = useSelector(state => state.books)
     // const { currentUser } = useSelector(state => state.userAuth)
+    const dispatch = useDispatch()
+
+    dispatch(getItemsInit())
 
     return (
         <>
