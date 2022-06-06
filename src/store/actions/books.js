@@ -1,5 +1,5 @@
 import { ActionTypes } from "../contants/action-types";
-import { auth, db } from "../../firebase"
+import { auth, db } from "../../firebase/firebase"
 import { getDocs, query, collection, where } from "firebase/firestore"
 
 const getItemsStart = () => {
@@ -23,7 +23,6 @@ const getItemsFail = (err) => {
 }
 
 const getBooksByCategory = async (categories) => {
-
     const q = query(collection(db, "books"), where("categories", "array-contains-any", [...categories]));
 
     const querySnapshot = await getDocs(q);

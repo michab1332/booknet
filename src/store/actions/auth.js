@@ -1,5 +1,5 @@
 import { ActionTypes } from "../contants/action-types"
-import { auth, db } from "../../firebase"
+import { auth, db } from "../../firebase/firebase.js"
 import { doc, setDoc, getDoc } from "firebase/firestore"
 
 //register
