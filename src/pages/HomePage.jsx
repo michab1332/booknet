@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import getBooksByCategory from '../firebase/getBooksByCateogry'
+import getBooksByCategories from '../firebase/getBooksByCateogries'
 
 import ProposedBookSection from '../layouts/Main/ProposedBookSection'
 import CategoryBookSection from '../layouts/Main/CategoryBookSection'
@@ -7,7 +7,7 @@ import CategoryBookSection from '../layouts/Main/CategoryBookSection'
 export default function HomePage() {
     const books = useSelector(state => state.books)
     // const { currentUser } = useSelector(state => state.userAuth)
-    getBooksByCategory(["fantasy"]).then((data) => {
+    getBooksByCategories(["fantasy"]).then((data) => {
         console.log(data)
     });
 
