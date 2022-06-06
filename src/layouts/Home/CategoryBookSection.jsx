@@ -1,14 +1,22 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import getBooksByCategories from '../../firebase/getBooksByCateogries'
 
 import '../../assets/styles/CategoryBookSection.css'
 
 import BookItem from '../../components/BookItem'
 
-export default function CategoryBookSection({ text, data }) {
+export default function CategoryBookSection({ text, categories }) {
+  const [data, setData] = useState([])
   const navigate = useNavigate()
+
   const goToBookPage = (id) => {
     navigate(`book/${id}`)
   }
+
+  getBooksByCategories([...categories]).then((data) => {
+    setData(data)
+  });
 
   return (
     <div className="categoryBookSection">

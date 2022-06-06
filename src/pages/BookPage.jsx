@@ -1,19 +1,20 @@
 import { useState, useLayoutEffect, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
+import getBookById from "../firebase/getBookById"
 
 import BlurImage from "../layouts/BookPage/BlurImage"
 import Content from "../layouts/BookPage/Content"
 
 export default function BookPage() {
-    const books = useSelector(state => state.books)
     const [book, setBook] = useState({})
     const [scrollY, setScrollY] = useState(0)
     const { bookId } = useParams()
 
     useLayoutEffect(() => {
-        const filteredBook = [...books].filter(book => book.id === parseInt(bookId))
-        setBook(filteredBook[0])
+        getBookById(bookId).then(book => {
+            setBook(book)
+        })
         window.scrollTo(0, 0)
     }, [])
 
