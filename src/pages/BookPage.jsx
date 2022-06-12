@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import getBookById from "../firebase/getBookById";
 
 import BlurImage from "../layouts/BookPage/BlurImage";
@@ -9,13 +9,11 @@ export default function BookPage() {
     const [book, setBook] = useState({});
     const [scrollY, setScrollY] = useState(0);
     const { bookId } = useParams();
-    const { state } = useLocation();
 
     useLayoutEffect(() => {
-        // getBookById(bookId).then(book => {
-        //     setBook(book);
-        // })
-        setBook(state.bookData)
+        getBookById(bookId).then(book => {
+            setBook(book);
+        })
         window.scrollTo(0, 0);
     }, [])
 

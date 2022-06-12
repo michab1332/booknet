@@ -10,12 +10,8 @@ export default function CategoryBookSection({ text, categories }) {
   const [data, setData] = useState([])
   const navigate = useNavigate()
 
-  const goToBookPage = (id, bookData) => {
-    navigate(`book/${id}`, {
-      state: {
-        bookData
-      }
-    })
+  const goToBookPage = (id) => {
+    navigate(`book/${id}`);
   }
 
   getBooksByCategories([...categories]).then((data) => {
@@ -27,7 +23,7 @@ export default function CategoryBookSection({ text, categories }) {
       <p className="categoryBookSection__title">{text}</p>
       <div className="categoryBookContainer__booksContainer">
         {data.map(book => {
-          return <BookItem onClick={() => goToBookPage(book.id, book)} src={book.imgUrl} alt={book.name} key={book.id} />
+          return <BookItem onClick={() => goToBookPage(book.id)} src={book.imgUrl} alt={book.name} key={book.id} />
         })}
       </div>
     </div>

@@ -7,7 +7,8 @@ import BookItem from '../../components/BookItem'
 export default function UserItems({ text, data = [], buttonText }) {
     const navigate = useNavigate()
     const goToBookPage = (id) => {
-        navigate(`book/${id}`)
+        navigate("/")
+        //navigate(`book/${id}`)
     }
 
     return (
