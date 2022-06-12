@@ -53,7 +53,7 @@ export default function User() {
             </div>
             <div className="user__stats">
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">{addedBooks}</p>
+                    <p className="user__stats__item__number">{addedBooks.length}</p>
                     <p className="user__stats__item__text">Dodane książki</p>
                 </div>
                 <div className="user__stats__item">
