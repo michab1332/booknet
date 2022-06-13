@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutInit } from '../store/actions/auth';
-import getBooksById from '../firebase/getBooksById';
+import getBooksByIds from '../firebase/getBooksByIds';
 
 import '../assets/styles/User.css';
 
@@ -22,21 +22,21 @@ export default function User() {
     }
 
     useEffect(() => {
-        getBooksById(addedBooks).then(data => {
+        getBooksByIds(addedBooks).then(data => {
             setState(prevState => ({
                 ...prevState,
                 addedBooks: data
             }))
         })
 
-        getBooksById(readBooks).then(data => {
+        getBooksByIds(readBooks).then(data => {
             setState(prevState => ({
                 ...prevState,
                 readBooks: data
             }))
         })
 
-        getBooksById(likedBooks).then(data => {
+        getBooksByIds(likedBooks).then(data => {
             setState(prevState => ({
                 ...prevState,
                 likedBooks: data

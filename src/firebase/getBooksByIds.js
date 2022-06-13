@@ -1,7 +1,7 @@
 import { db } from "./firebase"
 import { getDocs, query, collection, where } from "firebase/firestore"
 
-const getBooksById = async (ids) => {
+const getBooksByIds = async (ids) => {
     let tab = [];
     const q = query(collection(db, "books"), where("id", "in", [...ids]));
     try {
@@ -16,4 +16,4 @@ const getBooksById = async (ids) => {
     }
 }
 
-export default getBooksById;
+export default getBooksByIds;
