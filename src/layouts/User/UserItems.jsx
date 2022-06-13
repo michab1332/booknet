@@ -4,7 +4,7 @@ import '../../assets/styles/CategoryBookSection.css'
 
 import BookItem from '../../components/BookItem'
 
-export default function UserItems({ text, data = [], buttonText }) {
+export default function UserItems({ text, data = [], buttonText, onClick }) {
     const navigate = useNavigate()
     const goToBookPage = (id) => {
         navigate(`/book/${id}`)
@@ -13,7 +13,7 @@ export default function UserItems({ text, data = [], buttonText }) {
     return (
         <div className="categoryBookSection">
             <p className="categoryBookSection__title">{text}</p>
-            <div className="categoryBookContainer__booksContainer">
+            <div onClick={onClick} className="categoryBookContainer__booksContainer">
                 <div className="user__button">
                     <p className="user__button__text">{buttonText}</p>
                 </div>

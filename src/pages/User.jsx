@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutInit } from '../store/actions/auth';
 import getBooksByIds from '../firebase/getBooksByIds';
+import { useNavigate } from 'react-router-dom';
 
 import '../assets/styles/User.css';
 
@@ -16,6 +17,8 @@ export default function User() {
     const { currentUser } = useSelector(state => state.userAuth);
     const { name, addedBooks, likedBooks, readBooks, readPages } = currentUser;
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch(logoutInit());
@@ -70,9 +73,9 @@ export default function User() {
                 </div>
             </div>
 
-            <UserItems text="Dodane książki" buttonText="Dodaj książke" data={state.addedBooks} />
-            <UserItems text="Przeczytane książki" buttonText="Przeczytaj książke" data={state.readBooks} />
-            <UserItems text="Polubione książki" buttonText="Polub książke" data={state.likedBooks} />
+            <UserItems onClick={() => console.log("dodaj ksiazke")} text="Dodane książki" buttonText="Dodaj książke" data={state.addedBooks} />
+            <UserItems onClick={() => navigate("/")} text="Przeczytane książki" buttonText="Przeczytaj książke" data={state.readBooks} />
+            <UserItems onClick={() => navigate("/")} text="Polubione książki" buttonText="Polub książke" data={state.likedBooks} />
 
             <div className="user__readPages">
                 <h1>{readPages}</h1>
