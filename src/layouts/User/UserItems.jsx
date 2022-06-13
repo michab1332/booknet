@@ -13,8 +13,8 @@ export default function UserItems({ text, data = [], buttonText, onClick }) {
     return (
         <div className="categoryBookSection">
             <p className="categoryBookSection__title">{text}</p>
-            <div onClick={onClick} className="categoryBookContainer__booksContainer">
-                <div className="user__button">
+            <div className="categoryBookContainer__booksContainer">
+                <div onClick={onClick} className="user__button">
                     <p className="user__button__text">{buttonText}</p>
                 </div>
                 {data.map(book => {
