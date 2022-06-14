@@ -64,12 +64,11 @@ export default function HomePage() {
         })));
     }, []);
 
-    const books = useSelector(state => state.books);
     return (
         <>
-            <ProposedBookSection bookData={books[0]} />
+            {readOn.length === 0 ? "loading..." : <ProposedBookSection bookData={readOn[0]} />}
             <CategoryBookSection text="Czytaj dalej" data={readOn} />
-            <CategoryBookSection text="Top 10 książek dzisiaj" data={books} />
+            {/* <CategoryBookSection text="Top 10 książek dzisiaj" data={books} /> */}
             <CategoryBookSection text="Horrory" data={horrors} />
             <CategoryBookSection text="Fantastyczne przygody" data={adventure} />
             {/* <CategoryBookSection text="Poczuj się jak detektyw" data={books} /> */}

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../Header/Header'
@@ -8,16 +9,18 @@ import '../../assets/styles/ProposedBookSection.css';
 
 export default function ProposedBookSection({ bookData }) {
     const navigate = useNavigate()
-    const { name, imgUrl, description, pdfUrl } = bookData
+    const { name, imgUrl, description, pdfUrl } = bookData;
+
     const addToMyBooks = () => {
-        console.log("added " + name)
+        console.log("added " + name);
     }
     const getInformations = () => {
-        console.log(description)
+        console.log(description);
     }
     const goToReadingPage = () => {
-        navigate('/reading', { state: { pdfUrl } })
+        navigate('/reading', { state: { pdfUrl } });
     }
+
     return (
         <div className="proposedBookContainer" style={{
             backgroundImage: `url(${imgUrl})`,
