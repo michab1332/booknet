@@ -33,33 +33,33 @@ export default function HomePage() {
 
     const { readOn, top10, horrors, adventure, detective } = state;
 
+    const getBooksByCategoriesFromFirebase = (categories, categoryName) => {
+        getBooksByCategories([...categories]).then(data => setState(prevState => ({
+            ...prevState,
+            [categoryName]: {
+                loading: false,
+                data
+            }
+        })))
+    }
+
+    const getBooksByIdsFromFirebase = (ids, name) => {
+        getBooksByIds(ids).then(data => setState(prevState => ({
+            ...prevState,
+            [name]: {
+                loading: false,
+                data
+            }
+        })));
+    }
+
     useEffect(() => {
         //get started books(read on)
-        getBooksByIds(currentUser.booksStarted).then(data => setState(prevState => ({
-            ...prevState,
-            readOn: {
-                loading: false,
-                data
-            }
-        })));
+        getBooksByIdsFromFirebase(currentUser.booksStarted, "readOn");
 
-        //get adventure books
-        getBooksByCategories(["fantasy", "adventure"]).then(data => setState(prevState => ({
-            ...prevState,
-            adventure: {
-                loading: false,
-                data
-            }
-        })));
-
-        //get horrors books
-        getBooksByCategories(["horror"]).then(data => setState(prevState => ({
-            ...prevState,
-            horrors: {
-                loading: false,
-                data
-            }
-        })));
+        //get books by categories
+        getBooksByCategoriesFromFirebase(["fantasy", "adventure"], "adventure");
+        getBooksByCategoriesFromFirebase(["horror"], "horrors");
     }, []);
 
     return (
