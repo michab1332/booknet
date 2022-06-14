@@ -6,32 +6,6 @@ import getBooksByIds from '../firebase/getBooksByIds';
 import ProposedBookSection from '../layouts/Home/ProposedBookSection';
 import CategoryBookSection from '../layouts/Home/CategoryBookSection';
 
-// const sortTab = [{
-//     id: 1,
-//     text: "Popularne w serwisie Readme",
-//     sortBy: ["fantasy", "Thriller"]
-// },
-// {
-//     id: 2,
-//     text: "Top 10 książek dzisiaj",
-//     sortBy: ["fantasy"]
-// },
-// {
-//     id: 3,
-//     text: "Nowości",
-//     sortBy: ["fantasy"]
-// },
-// {
-//     id: 4,
-//     text: "Horror",
-//     sortBy: ["Thriller"]
-// },
-// {
-//     id: 5,
-//     text: "Najlepiej oceniane",
-//     sortBy: ["Thriller"]
-// }]
-//categorybooksection bedzie tylko i wylacznie przyjmowac dane, nie bedzie na nie wplywac ani ich wywolywac -> jutro to zmienezz 
 export default function HomePage() {
     const { currentUser } = useSelector(state => state.userAuth);
     const [state, setState] = useState({
@@ -87,10 +61,6 @@ export default function HomePage() {
             }
         })));
     }, []);
-
-    useEffect(() => {
-        console.log(readOn)
-    }, [state])
 
     return (
         <>
