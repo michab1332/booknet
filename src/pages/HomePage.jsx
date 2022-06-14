@@ -35,11 +35,26 @@ import CategoryBookSection from '../layouts/Home/CategoryBookSection';
 export default function HomePage() {
     const { currentUser } = useSelector(state => state.userAuth);
     const [state, setState] = useState({
-        readOn: [],
-        top10: [],
-        horrors: [],
-        adventure: [],
-        detective: []
+        readOn: {
+            loading: true,
+            data: []
+        },
+        top10: {
+            loading: true,
+            data: []
+        },
+        horrors: {
+            loading: true,
+            data: []
+        },
+        adventure: {
+            loading: true,
+            data: []
+        },
+        detective: {
+            loading: true,
+            data: []
+        },
     });
 
     const { readOn, top10, horrors, adventure, detective } = state;
@@ -48,29 +63,42 @@ export default function HomePage() {
         //get started books(read on)
         getBooksByIds(currentUser.booksStarted).then(data => setState(prevState => ({
             ...prevState,
-            readOn: data
+            readOn: {
+                loading: false,
+                data
+            }
         })));
 
         //get adventure books
         getBooksByCategories(["fantasy", "adventure"]).then(data => setState(prevState => ({
             ...prevState,
-            adventure: data
+            adventure: {
+                loading: false,
+                data
+            }
         })));
 
         //get horrors books
         getBooksByCategories(["horror"]).then(data => setState(prevState => ({
             ...prevState,
-            horrors: data
+            horrors: {
+                loading: false,
+                data
+            }
         })));
     }, []);
 
+    useEffect(() => {
+        console.log(readOn)
+    }, [state])
+
     return (
         <>
-            {readOn.length === 0 ? "loading..." : <ProposedBookSection bookData={readOn[0]} />}
-            <CategoryBookSection text="Czytaj dalej" data={readOn} />
+            {readOn.loading === true ? "loading..." : <ProposedBookSection bookData={readOn.data[0]} />}
+            <CategoryBookSection text="Czytaj dalej" data={readOn.data} />
             {/* <CategoryBookSection text="Top 10 książek dzisiaj" data={books} /> */}
-            <CategoryBookSection text="Horrory" data={horrors} />
-            <CategoryBookSection text="Fantastyczne przygody" data={adventure} />
+            <CategoryBookSection text="Horrory" data={horrors.data} />
+            <CategoryBookSection text="Fantastyczne przygody" data={adventure.data} />
             {/* <CategoryBookSection text="Poczuj się jak detektyw" data={books} /> */}
         </>
     );
