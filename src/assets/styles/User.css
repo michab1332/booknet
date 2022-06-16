@@ -52,12 +52,13 @@
     background: linear-gradient(155.83deg, #00A7E1 -6.69%, rgba(0, 167, 225, 0) 130.03%);
     display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
 .user__button__text {
-    width: 100%;
     text-align: center;
+    width: 70%;
 }
 
 .user__readPages {

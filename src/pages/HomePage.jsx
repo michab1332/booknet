@@ -54,6 +54,7 @@ export default function HomePage() {
     }
 
     useEffect(() => {
+        //get books by ids
         //get started books(read on)
         getBooksByIdsFromFirebase(currentUser.booksStarted, "readOn");
 
