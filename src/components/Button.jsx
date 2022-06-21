@@ -6,15 +6,14 @@ export default function Button({ text, large, outline, onClick }) {
         <motion.button
             onClick={() => onClick()}
             style={{
-                width: large ? "100%" : 100,
-                minHeight: 40,
                 borderRadius: 5,
                 outline: "none",
                 border: outline ? "2px solid #fff" : "none",
                 backgroundColor: outline ? "transparent" : "#fff",
                 color: outline ? '#fff' : '#000',
                 fontSize: 19,
-                fontWeight: 900
+                fontWeight: 900,
+                padding: "7px 32px"
             }}
             whileTap={{
                 scale: .95
