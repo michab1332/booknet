@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import getBookById from "../firebase/getBookById";
 import "../assets/styles/BookPage.css";
 
@@ -8,6 +8,7 @@ import BlurImage from "../layouts/BookPage/BlurImage";
 export default function BookPage() {
     const [book, setBook] = useState({});
     const [scrollY, setScrollY] = useState(0);
+    const navigation = useNavigate();
     const { bookId } = useParams();
 
     useLayoutEffect(() => {
@@ -25,6 +26,14 @@ export default function BookPage() {
     const handleScroll = () => {
         window.addEventListener('scroll', (e) => {
             setScrollY(window.scrollY);
+        })
+    }
+
+    const handleGoToReadingPage = () => {
+        navigation("/reading", {
+            state: {
+                pdfUrl: book.pdfUrl
+            }
         })
     }
 
