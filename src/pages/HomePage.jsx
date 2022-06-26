@@ -5,6 +5,7 @@ import getBooksByIds from '../firebase/getBooksByIds';
 
 import ProposedBookSection from '../layouts/Home/ProposedBookSection';
 import CategoryBookSection from '../layouts/Home/CategoryBookSection';
+import LoadingScreen from '../components/LoadingScreen';
 
 export default function HomePage() {
     const { currentUser } = useSelector(state => state.userAuth);
@@ -65,7 +66,7 @@ export default function HomePage() {
 
     return (
         <>
-            {readOn.loading === true ? "loading..." : <ProposedBookSection bookData={readOn.data[0]} />}
+            {readOn.loading === true ? <LoadingScreen /> : <ProposedBookSection bookData={readOn.data[0]} />}
             <CategoryBookSection text="Czytaj dalej" data={readOn.data} />
             {/* <CategoryBookSection text="Top 10 książek dzisiaj" data={books} /> */}
             <CategoryBookSection text="Horrory" data={horrors.data} />
