@@ -1,19 +1,24 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import getBookById from "../firebase/getBookById";
+import getUserById from "../firebase/getUserById";
 import "../assets/styles/BookPage.css";
 
 import BlurImage from "../layouts/BookPage/BlurImage";
 
 export default function BookPage() {
     const [book, setBook] = useState({});
+    const [addedBy, setAddedBy] = useState("");
     const [scrollY, setScrollY] = useState(0);
     const navigation = useNavigate();
     const { bookId } = useParams();
 
     useLayoutEffect(() => {
-        getBookById(bookId).then(book => {
-            setBook(book);
+        getBookById(bookId).then(bookData => {
+            setBook(bookData);
+            getUserById(bookData.addedBy).then(userData => {
+                setAddedBy(userData);
+            })
         })
         window.scrollTo(0, 0);
     }, [])
@@ -55,7 +60,7 @@ export default function BookPage() {
                     <p className="bookPage__desc__text">{book.description}</p>
                 </div>
                 <footer>
-                    <p>Dodane przez: {book.addedBy}</p>
+                    <p>Dodane przez: {addedBy.name}</p>
                 </footer>
             </div>
         </div>
