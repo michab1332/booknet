@@ -5,6 +5,7 @@ import getUserById from "../firebase/getUserById";
 import "../assets/styles/BookPage.css";
 
 import BlurImage from "../layouts/BookPage/BlurImage";
+import Button from "../components/Button";
 
 export default function BookPage() {
     const [book, setBook] = useState({});
@@ -49,6 +50,10 @@ export default function BookPage() {
                 <div className="bookPage__baseInf">
                     <p className="bookPage__baseInf__name">{book.name}</p>
                     <p className="bookPage__baseInf__author">{book.author}</p>
+                </div>
+                <div className="bookPage__buttons">
+                    <Button text="Czytaj" onClick={handleGoToReadingPage} />
+                    <Button text="Polub" outline onClick={() => console.log("do ulubionych")} />
                 </div>
                 <div className="bookPage__likes">
                     <img src="" alt="" className="bookPage__likeButton" />

@@ -8,7 +8,7 @@ export default function Button({ text, large, outline, onClick }) {
             style={{
                 borderRadius: 5,
                 outline: "none",
-                border: outline ? "2px solid #fff" : "none",
+                border: "2px solid #fff",
                 backgroundColor: outline ? "transparent" : "#fff",
                 color: outline ? '#fff' : '#000',
                 fontSize: 19,
