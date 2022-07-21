@@ -40,10 +40,12 @@ export default function User() {
         })
 
         getBooksByIds(likedBooks).then(data => {
+            console.log(data)
             setState(prevState => ({
                 ...prevState,
                 likedBooks: data
-            }))
+            })
+            )
         })
 
     }, [])

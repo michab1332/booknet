@@ -1,13 +1,17 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import getBookById from "../firebase/getBookById";
 import getUserById from "../firebase/getUserById";
+import likeBookByIdToUserAccount from "../firebase/likeBookByIdToUserAccount";
+
 import "../assets/styles/BookPage.css";
 
 import BlurImage from "../layouts/BookPage/BlurImage";
 import Button from "../components/Button";
 
 export default function BookPage() {
+    const { currentUser } = useSelector(state => state.userAuth);
     const [book, setBook] = useState({});
     const [addedBy, setAddedBy] = useState("");
     const [scrollY, setScrollY] = useState(0);
@@ -43,6 +47,12 @@ export default function BookPage() {
         })
     }
 
+    const handleLikeBook = () => {
+        likeBookByIdToUserAccount(book.id, currentUser.id);
+        console.log(currentUser)
+        console.log(`Polubiono ksiazke o id: ${book.id}`);
+    }
+
     return (
         <div>
             <div className="bookPage">
@@ -53,7 +63,7 @@ export default function BookPage() {
                 </div>
                 <div className="bookPage__buttons">
                     <Button text="Czytaj" onClick={handleGoToReadingPage} />
-                    <Button text="Polub" outline onClick={() => console.log("do ulubionych")} />
+                    <Button text="Polub" outline onClick={handleLikeBook} />
                 </div>
                 <div className="bookPage__likes">
                     <img src="" alt="" className="bookPage__likeButton" />
