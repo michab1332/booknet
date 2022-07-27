@@ -80,16 +80,18 @@ const getUserByUid = async (uid) => {
 
 export const loginInit = (email, password) => {
     return function (dispatch) {
-        dispatch(loginStart())
+        dispatch(loginStart());
         auth
             .signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                getUserByUid(user.uid).then(user => {
-                    dispatch(loginSuccess(user))
-                })
+                console.log(user)
+                dispatch(loginSuccess(user));
+                // getUserByUid(user.uid).then(user => {
+                //     dispatch(loginSuccess(user))
+                // })
             })
             .catch(err => {
-                if (err) dispatch(loginFail(err.message))
+                if (err) dispatch(loginFail(err.message));
             })
     }
 }

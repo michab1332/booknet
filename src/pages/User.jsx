@@ -10,9 +10,18 @@ import UserItems from '../layouts/User/UserItems';
 
 export default function User() {
     const [state, setState] = useState({
-        addedBooks: [],
-        readBooks: [],
-        likedBooks: []
+        addedBooks: {
+            loading: true,
+            data: []
+        },
+        readBooks: {
+            loading: true,
+            data: []
+        },
+        likedBooks: {
+            loading: true,
+            data: []
+        }
     });
     const { currentUser } = useSelector(state => state.userAuth);
     const { name, addedBooks, likedBooks, readBooks, readPages } = currentUser;
@@ -25,28 +34,28 @@ export default function User() {
     }
 
     useEffect(() => {
-        getBooksByIds(addedBooks).then(data => {
-            setState(prevState => ({
-                ...prevState,
-                addedBooks: data
-            }))
-        })
+        // getBooksByIds(addedBooks).then(data => {
+        //     setState(prevState => ({
+        //         ...prevState,
+        //         addedBooks: data
+        //     }))
+        // })
 
-        getBooksByIds(readBooks).then(data => {
-            setState(prevState => ({
-                ...prevState,
-                readBooks: data
-            }))
-        })
+        // getBooksByIds(readBooks).then(data => {
+        //     setState(prevState => ({
+        //         ...prevState,
+        //         readBooks: data
+        //     }))
+        // })
 
-        getBooksByIds(likedBooks).then(data => {
-            console.log(data)
-            setState(prevState => ({
-                ...prevState,
-                likedBooks: data
-            })
-            )
-        })
+        // getBooksByIds(likedBooks).then(data => {
+        //     console.log(data)
+        //     setState(prevState => ({
+        //         ...prevState,
+        //         likedBooks: data
+        //     })
+        //     )
+        // })
 
     }, [])
 
@@ -58,15 +67,15 @@ export default function User() {
             </div>
             <div className="user__stats">
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">{addedBooks.length}</p>
+                    <p className="user__stats__item__number">{state.addedBooks.data.length}</p>
                     <p className="user__stats__item__text">Dodane książki</p>
                 </div>
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">{likedBooks.length}</p>
+                    <p className="user__stats__item__number">{state.likedBooks.data.length}</p>
                     <p className="user__stats__item__text">Przeczytane książki</p>
                 </div>
                 <div className="user__stats__item">
-                    <p className="user__stats__item__number">{readBooks.length}</p>
+                    <p className="user__stats__item__number">{state.readBooks.data.length}</p>
                     <p className="user__stats__item__text">Polubione książki</p>
                 </div>
                 <div className="user__stats__item">
@@ -75,9 +84,9 @@ export default function User() {
                 </div>
             </div>
 
-            <UserItems onClick={() => console.log("dodaj ksiazke")} text="Dodane książki" buttonText="Dodaj książke" data={state.addedBooks} />
-            <UserItems onClick={() => navigate("/")} text="Przeczytane książki" buttonText="Przeczytaj książke" data={state.readBooks} />
-            <UserItems onClick={() => navigate("/")} text="Polubione książki" buttonText="Polub książke" data={state.likedBooks} />
+            <UserItems onClick={() => console.log("dodaj ksiazke")} text="Dodane książki" buttonText="Dodaj książke" data={state.addedBooks.data} />
+            <UserItems onClick={() => navigate("/")} text="Przeczytane książki" buttonText="Przeczytaj książke" data={state.readBooks.data} />
+            <UserItems onClick={() => navigate("/")} text="Polubione książki" buttonText="Polub książke" data={state.likedBooks.data} />
 
             <div className="user__readPages">
                 <h1>{readPages}</h1>
