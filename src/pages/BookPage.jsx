@@ -48,7 +48,7 @@ export default function BookPage() {
     }
 
     const handleLikeBook = () => {
-        likeBookByIdToUserAccount(book.id, currentUser.id);
+        likeBookByIdToUserAccount(book.id, currentUser.uid);
         console.log(currentUser);
         console.log(`Polubiono ksiazke o id: ${book.id}`);
     }
