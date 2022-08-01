@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import getBookById from "../firebase/getBookById";
 import getUserById from "../firebase/getUserById";
+import checkIfUserLikeBookById from "../firebase/checkIfUserLikeBookById";
 import likeBookByIdToUserAccount from "../firebase/likeBookByIdToUserAccount";
 
 import "../assets/styles/BookPage.css";
@@ -12,7 +13,10 @@ import Button from "../components/Button";
 
 export default function BookPage() {
     const { currentUser } = useSelector(state => state.userAuth);
-    const [book, setBook] = useState({});
+    const [book, setBook] = useState({
+        data: {},
+        isLiked: false
+    });
     const [addedBy, setAddedBy] = useState("");
     const [scrollY, setScrollY] = useState(0);
     const navigation = useNavigate();
@@ -20,7 +24,18 @@ export default function BookPage() {
 
     useLayoutEffect(() => {
         getBookById(bookId).then(bookData => {
-            setBook(bookData);
+            setBook(prevState => ({
+                ...prevState,
+                data: bookData
+            }));
+
+            checkIfUserLikeBookById(currentUser.uid, parseInt(bookId)).then(isLiked => {
+                setBook(prevState => ({
+                    ...prevState,
+                    isLiked
+                }))
+            });
+
             getUserById(bookData.addedBy).then(userData => {
                 setAddedBy(userData);
             })
@@ -48,22 +63,22 @@ export default function BookPage() {
     }
 
     const handleLikeBook = () => {
-        likeBookByIdToUserAccount(book.id, currentUser.uid);
+        likeBookByIdToUserAccount(book.data.id, currentUser.uid);
         console.log(currentUser);
-        console.log(`Polubiono ksiazke o id: ${book.id}`);
+        console.log(`Polubiono ksiazke o id: ${book.data.id}`);
     }
 
     return (
         <div>
             <div className="bookPage">
-                <BlurImage imgUrl={book.imgUrl} scrollY={scrollY} />
+                <BlurImage imgUrl={book.data.imgUrl} scrollY={scrollY} />
                 <div className="bookPage__baseInf">
-                    <p className="bookPage__baseInf__name">{book.name}</p>
-                    <p className="bookPage__baseInf__author">{book.author}</p>
+                    <p className="bookPage__baseInf__name">{book.data.name}</p>
+                    <p className="bookPage__baseInf__author">{book.data.author}</p>
                 </div>
                 <div className="bookPage__buttons">
                     <Button text="Czytaj" onClick={handleGoToReadingPage} />
-                    <Button text="Polub" outline onClick={handleLikeBook} />
+                    <Button text={book.isLiked ? "Unlike" : "Like"} outline onClick={handleLikeBook} />
                 </div>
                 <div className="bookPage__likes">
                     <img src="" alt="" className="bookPage__likeButton" />
@@ -71,8 +86,8 @@ export default function BookPage() {
                     <img src="" alt="" className="bookPage__disLikeButton" />
                 </div>
                 <div className="bookPage__desc">
-                    <p className="bookPage__desc__views">{book.views} wyświetleń</p>
-                    <p className="bookPage__desc__text">{book.description}</p>
+                    <p className="bookPage__desc__views">{book.data.views} wyświetleń</p>
+                    <p className="bookPage__desc__text">{book.data.description}</p>
                 </div>
                 <footer>
                     <p>Dodane przez: {addedBy.name}</p>
