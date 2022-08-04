@@ -16,12 +16,13 @@ export default function Signup() {
 
     const [state, setState] = useState({
         email: "",
+        name: "",
         password: "",
         passwordConfirmation: "",
         error: null
     })
 
-    const { email, password, passwordConfirmation, error } = state
+    const { email, name, password, passwordConfirmation, error } = state
 
     const handleInputChange = (e) => {
         setState({
@@ -57,11 +58,12 @@ export default function Signup() {
             return;
         }
 
-        dispatch(registerInit(email, password, "display name"))
+        dispatch(registerInit(email, password, name));
 
         //reset state
         setState({
             email: "",
+            name: "",
             password: "",
             passwordConfirmation: ""
         })
@@ -83,6 +85,11 @@ export default function Signup() {
                 <div>
                     <label htmlFor="email">E-mail</label> <br></br>
                     <input className='auth__form__input' type="text" name="email" onChange={handleInputChange} value={email} />
+                </div>
+
+                <div>
+                    <label htmlFor="name">Name</label> <br></br>
+                    <input className='auth__form__input' type="text" name="name" onChange={handleInputChange} value={name} />
                 </div>
 
                 <div>

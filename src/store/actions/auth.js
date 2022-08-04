@@ -1,6 +1,6 @@
 import { ActionTypes } from "../contants/action-types"
 import { auth, db } from "../../firebase/firebase.js"
-import { doc, setDoc, getDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
 
 //register
 const registerStart = () => {
@@ -67,28 +67,13 @@ const loginFail = (error) => {
     }
 }
 
-const getUserByUid = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        return docSnap.data()
-    } else {
-        return null
-    }
-}
-
 export const loginInit = (email, password) => {
     return function (dispatch) {
         dispatch(loginStart());
         auth
             .signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                console.log(user)
                 dispatch(loginSuccess(user));
-                // getUserByUid(user.uid).then(user => {
-                //     dispatch(loginSuccess(user))
-                // })
             })
             .catch(err => {
                 if (err) dispatch(loginFail(err.message));
