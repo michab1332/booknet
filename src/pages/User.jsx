@@ -110,9 +110,9 @@ export default function User() {
                     </div>
                 </div>
 
+                <UserItems onClick={() => navigate("/")} text="Polubione książki" buttonText="Polub książke" data={state.likedBooks.data} />
                 <UserItems onClick={() => console.log("dodaj ksiazke")} text="Dodane książki" buttonText="Dodaj książke" data={state.addedBooks.data} />
                 <UserItems onClick={() => navigate("/")} text="Przeczytane książki" buttonText="Przeczytaj książke" data={state.readBooks.data} />
-                <UserItems onClick={() => navigate("/")} text="Polubione książki" buttonText="Polub książke" data={state.likedBooks.data} />
 
                 <div className="user__readPages">
                     <h1>{user.data.readPages}</h1>
