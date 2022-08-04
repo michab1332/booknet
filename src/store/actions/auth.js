@@ -26,8 +26,13 @@ const registerFail = (error) => {
 const setUserDoc = async ({ uid, name, email }) => {
     await setDoc(doc(db, "users", uid), {
         name,
+        id: uid,
         email,
-        favBooks: []
+        addedBooks: [],
+        startedBooks: [],
+        likedBooks: [],
+        readBooks: [],
+        readPages: 0
     })
 }
 
@@ -37,6 +42,9 @@ export const registerInit = (email, password, displayName) => {
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
+                user.updateProfile({
+                    displayName: displayName
+                })
                 setUserDoc({ uid: user.uid, name: displayName, email: user.email, })
                 dispatch(registerSuccess(user))
             })
