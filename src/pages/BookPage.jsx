@@ -96,13 +96,10 @@ export default function BookPage() {
                         <Button text="Czytaj" onClick={handleGoToReadingPage} />
                         <Button text={book.isLiked ? "Dislike" : "Like"} outline onClick={book.isLiked ? handleDislikeBook : handleLikeBook} />
                     </div>
-                    <div className="bookPage__likes">
-                        <img src="" alt="" className="bookPage__likeButton" />
-                        <p className="bookPage__likes__text"></p>
-                        <img src="" alt="" className="bookPage__disLikeButton" />
+                    <div className="bookPage__views">
+                        <p className="bookPage__views__number">{book.data.views} wyświetleń</p>
                     </div>
                     <div className="bookPage__desc">
-                        <p className="bookPage__desc__views">{book.data.views} wyświetleń</p>
                         <p className="bookPage__desc__text">{book.data.description}</p>
                     </div>
                     <footer>
